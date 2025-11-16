@@ -123,6 +123,10 @@ h3 {
   gap: 24px;
 }
 
+.col-3 {
+  grid-column: span 3;
+}
+
 .col-6 {
   grid-column: span 6;
 }
@@ -166,6 +170,41 @@ h3 {
   padding-block: var(--space-5);
 }
 
+/* preview navigation */
+.preview-nav {
+  width: 100%;
+  padding-top: var(--space-24);
+}
+
+.preview-nav .grid {
+  align-items: center;
+}
+
+.preview-logo {
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  font-size: var(--font-size-sm);
+}
+
+/* hero scaffolding */
 .hero {
-  padding-block: var(--space-48);
+  padding-top: var(--space-48);
+  padding-bottom: var(--space-32);
+  min-height: 70vh;
+  display: flex;
+  align-items: center;
+}
+
+.hero .grid {
+  width: 100%;
+  row-gap: var(--space-24);
+}
+
+.hero h1 {
+  margin-bottom: var(--space-16);
+}
+
+.hero .lede {
+  margin-top: var(--space-16);
+  max-width: 42ch;
 }
