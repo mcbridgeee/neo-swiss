@@ -1,10 +1,15 @@
 :root {
   /* spacing scale */
-  --space-1: 0.5rem; /* 8px */
-  --space-2: 1rem; /* 16px */
-  --space-3: 1.5rem; /* 24px */
-  --space-4: 2rem; /* 32px */
-  --space-5: 3rem; /* 48px */
+  --space-8: 0.5rem;
+  --space-16: 1rem;
+  --space-24: 1.5rem;
+  --space-32: 2rem;
+  --space-48: 3rem;
+  --space-1: var(--space-8);
+  --space-2: var(--space-16);
+  --space-3: var(--space-24);
+  --space-4: var(--space-32);
+  --space-5: var(--space-48);
 
   /* color palette */
   --color-black: #050505;
@@ -118,10 +123,18 @@ h3 {
   gap: 24px;
 }
 
+.col-6 {
+  grid-column: span 6;
+}
+
 @media (max-width: 768px) {
   .grid {
     grid-template-columns: repeat(6, minmax(0, 1fr));
     gap: 16px;
+  }
+
+  .col-md-6 {
+    grid-column: span 6;
   }
 }
 
@@ -129,6 +142,10 @@ h3 {
   .grid {
     grid-template-columns: repeat(4, minmax(0, 1fr));
     gap: 12px;
+  }
+
+  .col-sm-4 {
+    grid-column: span 4;
   }
 }
 
@@ -147,4 +164,8 @@ h3 {
 
 .section-pad-4 {
   padding-block: var(--space-5);
+}
+
+.hero {
+  padding-block: var(--space-48);
 }
