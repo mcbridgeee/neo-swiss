@@ -226,20 +226,100 @@ h3 {
   justify-self: start;
 }
 
+.hero-copy {
+  display: flex;
+  flex-direction: column;
+}
+
 .hero-eyebrow {
   text-transform: uppercase;
   letter-spacing: 0.25em;
   font-size: var(--font-size-xs);
-  margin-bottom: var(--space-16);
+  margin-bottom: var(--space-32);
 }
 
 .hero h1 {
   margin: 0;
 }
 
+@media (max-width: 767px) {
+  .hero h1 {
+    font-size: clamp(3rem, 18vw, 4.5rem);
+    line-height: 1.05;
+  }
+
+  .hero-grid {
+    row-gap: calc(clamp(3rem, 18vw, 4.5rem) * 0.4);
+  }
+
+  .hero .lede {
+    margin-top: calc(clamp(3rem, 18vw, 4.5rem) * 0.6);
+  }
+
+  .hero-eyebrow {
+    margin-bottom: clamp(2rem, 12vw, 3.5rem);
+  }
+}
+
+.word {
+  display: block;
+  margin-right: 0;
+  margin-bottom: clamp(0.25rem, 2vw, 1rem);
+  color: #000;
+  animation-name: wordFade;
+  animation-duration: 1s;
+  animation-timing-function: steps(1, end);
+  animation-iteration-count: 1;
+}
+
+.word:last-child {
+  margin-bottom: 0;
+}
+
+.word:nth-of-type(1) {
+  animation-delay: 0s;
+}
+
+.word:nth-of-type(2) {
+  animation-delay: 0.9s;
+}
+
+.word:nth-of-type(3) {
+  animation-delay: 1.8s;
+  animation-name: wordFadeFinal;
+  animation-fill-mode: forwards;
+}
+
+@media (min-width: 768px) {
+  .word {
+    display: inline-block;
+    margin-right: var(--space-16);
+    margin-bottom: 0;
+  }
+
+  .word:last-child {
+    margin-right: 0;
+  }
+}
+
 .hero .lede {
   margin-top: var(--space-24);
   max-width: 60ch;
+}
+
+.hero-link {
+  display: inline-block;
+  margin-top: var(--space-2);
+  color: var(--color-accent);
+  text-decoration: none;
+  transition: color 0.2s ease;
+  align-self: flex-end;
+}
+
+.hero-link:hover {
+  color: #000;
+  text-decoration: underline;
+  opacity: 1;
 }
 
 @media (min-width: 768px) {
@@ -440,5 +520,31 @@ h3 {
     flex-direction: row;
     justify-content: flex-end;
     gap: var(--space-16);
+  }
+}
+@keyframes wordFade {
+  0% {
+    color: #000;
+  }
+  10% {
+    color: var(--color-accent);
+  }
+  90% {
+    color: var(--color-accent);
+  }
+  100% {
+    color: #000;
+  }
+}
+
+@keyframes wordFadeFinal {
+  0% {
+    color: #000;
+  }
+  10% {
+    color: var(--color-accent);
+  }
+  100% {
+    color: var(--color-accent);
   }
 }
