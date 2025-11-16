@@ -1,0 +1,5 @@
+# Ignore everything by default to avoid scanning external or system files
+*
+
+# But include our site sources
+!src/**
