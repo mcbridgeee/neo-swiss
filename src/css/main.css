@@ -18,7 +18,7 @@
   --color-gray-300: #e1e1e1;
   --color-gray-600: #7a7a7a;
   --color-gray-900: #121212;
-  --color-accent: #ff003c;
+  --color-accent: #c24e00;
 
   /* typography scale */
   --font-family-base: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
@@ -30,7 +30,7 @@
   --font-size-xxl: clamp(2.25rem, 1.8rem + 1.5vw, 3rem);
   --line-height-base: 1.6;
 
-  background-color: var(--color-gray-100);
+  background-color: #f6ede3;
   color: var(--color-black);
 }
 
@@ -45,12 +45,13 @@
   margin: 0;
 }
 
+html,
 body {
   font-family: var(--font-family-base);
   font-size: var(--font-size-base);
   line-height: var(--line-height-base);
   color: var(--color-black);
-  background: var(--color-gray-100);
+  background: #f6ede3;
   min-height: 100vh;
   -webkit-font-smoothing: antialiased;
 }
@@ -81,8 +82,18 @@ h6 {
   overflow-wrap: break-word;
 }
 
+a {
+  color: var(--color-accent);
+  text-decoration: none;
+  transition: opacity 0.2s ease;
+}
+
+a:hover {
+  opacity: 0.7;
+}
+
 h1 {
-  font-size: var(--font-size-xxl);
+  font-size: clamp(2.5rem, 9vw, 6.25rem);
   line-height: 1.15;
   text-transform: uppercase;
 }
@@ -198,6 +209,9 @@ h3 {
 .hero {
   padding-top: var(--space-48);
   padding-bottom: var(--space-48);
+  min-height: 80vh;
+  display: flex;
+  align-items: flex-end;
 }
 
 .hero-grid {
@@ -235,17 +249,145 @@ h3 {
   }
 
   .hero-heading {
-    grid-column: 1 / span 5;
+    grid-column: 1 / span 6;
   }
 
   .hero-copy {
-    grid-column: 8 / span 4;
+    grid-column: 7 / span 5;
   }
 
   .hero .lede {
     margin-inline: 0;
   }
 }
+
+@media (min-width: 1024px) {
+  .hero-heading {
+    grid-column: 1 / span 7;
+  }
+
+  .hero-copy {
+    grid-column: 9 / span 4;
+  }
+}
+
+.timeline-section,
+.designers-section {
+  padding-block: var(--space-48);
+}
+
+.section-eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-size: clamp(14px, 1.4vw, 16px);
+  font-weight: 500;
+  margin-bottom: var(--space-24);
+  color: #111;
+  grid-column: 1 / -1;
+  padding-bottom: var(--space-8);
+  border-bottom: 1px solid #111;
+}
+
+.timeline-overview {
+  margin-top: var(--space-48);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-32);
+}
+
+.timeline-markers {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-32);
+}
+
+.timeline-marker {
+  text-align: left;
+  position: relative;
+  padding-top: var(--space-16);
+  display: flex;
+  flex-direction: column;
+}
+
+.timeline-marker::before {
+  content: '';
+  width: 12px;
+  height: 12px;
+  border: 1px solid var(--color-accent);
+  background: var(--color-accent);
+  border-radius: 50%;
+  margin-bottom: var(--space-16);
+}
+
+.timeline-year {
+  font-size: var(--font-size-sm);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: var(--space-8);
+}
+
+.timeline-caption {
+  max-width: 32ch;
+}
+
+.timeline-link {
+  font-size: var(--font-size-sm);
+  text-decoration: none;
+}
+
+.designers-overview {
+  margin-top: var(--space-48);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-24);
+}
+
+.designers-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-16);
+}
+
+.designers-list a {
+  text-decoration: none;
+}
+
+.designers-link {
+  font-size: var(--font-size-sm);
+  text-decoration: none;
+}
+
+@media (min-width: 768px) {
+  .timeline-markers {
+    flex-direction: row;
+    justify-content: space-between;
+    position: relative;
+    padding-top: var(--space-16);
+  }
+
+  .timeline-markers::before {
+    content: '';
+    position: absolute;
+    top: calc(var(--space-16) / 2);
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: #dcdcdc;
+  }
+
+  .timeline-marker {
+    max-width: 18rem;
+  }
+
+  .designers-list {
+    flex-direction: row;
+    gap: var(--space-32);
+  }
+}
+
 
 /* global header navigation */
 .site-header {
@@ -275,7 +417,7 @@ h3 {
 
 .site-nav a {
   text-decoration: none;
-  color: inherit;
+  color: var(--color-accent);
   padding: 0.5rem 0.75rem;
   min-height: var(--space-24);
   display: inline-flex;
