@@ -518,6 +518,12 @@ main {
   max-width: 28ch;
 }
 
+.page-content-grid .designers-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--space-4);
+}
+
 .designers-link-wrap,
 .timeline-link-wrap {
   margin-top: var(--space-3);
@@ -620,60 +626,69 @@ main {
   margin-top: var(--space-4);
 }
 
+.timeline-grid {
+  display: block;
+}
+
 .timeline-stack {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-3);
+  position: relative;
+  display: block;
+  margin-top: var(--space-4);
+  padding-left: 0;
 }
 
 .timeline-stack .timeline-card {
   grid-column: unset;
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  column-gap: var(--space-2);
+  align-items: flex-start;
+  margin-top: var(--space-5);
+  row-gap: var(--space-1);
+  position: relative;
 }
 
-/* On larger screens, render the timeline as a single horizontal row (mobile-first) */
-@media (min-width: 1024px) {
-  /* Desktop: show three timeline cards side-by-side, centered */
-  .timeline-stack {
-    flex-direction: row;
-    gap: var(--space-4);
-    align-items: flex-start;
-    justify-content: center;
-    padding-bottom: var(--space-2);
-    /* prevent wrapping so order stays left-to-right chronological */
-    flex-wrap: nowrap;
-  }
-
-  /* Each card takes one third of the available content area (minus gaps)
-     Use min-width:0 so flex-basis can shrink correctly inside constrained containers */
-  .timeline-stack .timeline-card {
-    grid-column: unset;
-    flex: 0 0 calc((100% - (2 * var(--space-4))) / 3);
-    min-width: 0;
-    border-top: none;
-    border-left: none;
-    padding: var(--space-3) var(--space-2);
-    margin: 0;
-    box-sizing: border-box;
-  }
-
-  .timeline-stack .timeline-card::before {
-    margin-bottom: 0.6rem;
-  }
-
-  /* Slight visual separator between cards using a right border on all but the last */
-  .timeline-stack .timeline-card + .timeline-card {
-    border-left: 1px solid var(--color-gray-400);
-    padding-left: calc(var(--space-3) - 0.5rem);
-  }
-
-  /* Ensure the first three are visible and centered; if there are more, they will overflow horizontally
-     (this keeps chronological left-to-right order). */
-  .timeline-stack {
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-  }
+.timeline-stack .timeline-card:first-child {
+  margin-top: 0;
 }
 
+.timeline-stack::before {
+  content: '';
+  position: absolute;
+  left: calc((100% / 12) * 0.5);
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: #d3d3d3;
+}
+
+.timeline-dot {
+  grid-column: 2 / span 1;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--color-accent);
+  justify-self: center;
+  align-self: start;
+  margin-left: -5px;
+  margin-top: var(--space-3);
+}
+
+.timeline-year {
+  grid-column: 3 / span 2;
+  font-size: clamp(18px, 2vw, 22px);
+  letter-spacing: 0.1em;
+  font-weight: 600;
+  text-transform: uppercase;
+  margin-top: var(--space-2);
+}
+
+.timeline-caption {
+  grid-column: 5 / -1;
+  font-size: clamp(16px, 1.6vw, 18px);
+  line-height: 1.6;
+  margin-top: var(--space-1);
+}
 @media (max-width: 1023px) {
   .page-intro,
   .page-lede,
@@ -731,6 +746,10 @@ main {
 }
 
 @media (max-width: 768px) {
+  .page-content-grid .designers-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
   .designers-section,
   .designers-list,
   .timeline-section,
@@ -748,6 +767,34 @@ main {
   .section-teaser {
     margin-top: 0.25rem !important;
     margin-bottom: 0.25rem !important;
+  }
+
+  .timeline-dot {
+    grid-column: 1;
+    justify-self: flex-start;
+    margin-left: 0;
+    margin-top: var(--space-1);
+  }
+
+  .timeline-stack {
+    padding-left: 0;
+    margin-top: var(--space-3);
+  }
+
+  .timeline-stack::before {
+    display: none;
+  }
+
+  .timeline-stack .timeline-card {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    margin-top: var(--space-4);
+    row-gap: var(--space-1);
+  }
+
+  .timeline-year,
+  .timeline-caption {
+    grid-column: 1 / -1;
+    margin-top: var(--space-1);
   }
 
   .designer-item,
@@ -820,5 +867,17 @@ main {
   /* Optional: tighten right edge spacing */
   .site-nav {
     padding-right: 1rem;
+  }
+}
+.designers-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-4);
+}
+
+/* mobile */
+@media (max-width: 768px) {
+  .designers-grid {
+    grid-template-columns: repeat(2, 1fr);
   }
 }
