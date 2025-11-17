@@ -2,7 +2,7 @@
   <div class="container">
     <div class="grid site-header-grid">
       <div class="site-brand col-4 col-md-3 col-sm-4">
-        <a href="/">swiss lineage gallery</a>
+        <a href="{{ '/' | url }}">swiss lineage gallery</a>
       </div>
       <div class="site-nav-col col-4 col-md-3 col-sm-4 site-nav-desktop">
         <input type="checkbox" id="nav-toggle" class="nav-toggle" />
@@ -13,9 +13,9 @@
           <span class="sr-only">toggle navigation</span>
         </label>
         <nav class="site-nav">
-          <a href="/timeline/">timeline</a>
-          <a href="/designers/">designers</a>
-          <a href="/style/">about</a>
+          <a href="{{ '/timeline/' | url }}">timeline</a>
+          <a href="{{ '/designers/' | url }}">designers</a>
+          <a href="{{ '/style/' | url }}">about</a>
         </nav>
       </div>
     </div>
