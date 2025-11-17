@@ -22,6 +22,12 @@
   --color-gray-400: #cfcfcf;
   --color-gray-700: #7a7a7a;
   --color-accent: #ff003c;
+  --color-page-accent: var(--color-accent);
+
+  /* accent utility */
+.accent-neo {
+  color: var(--color-accent);
+}
 
   /* typography scale */
   --font-family-base: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
@@ -1080,7 +1086,7 @@ h1 {
   line-height: 1;
   margin-top: 4rem;
   margin-bottom: 3rem;
-  text-transform: lowercase;
+  text-transform: uppercase;
 }
 
 .page-hero-title .accent-neo {
@@ -1115,5 +1121,42 @@ h1 {
   .page-grid {
     padding-top: 4rem;
     padding-bottom: 4rem;
+  }
+}
+/* unify all hero titles (designers/timeline) to match ABOUT page */
+.page-hero-title {
+  font-size: clamp(3rem, 8vw, 6rem);   /* same scale as WHAT IS NEO-SWISS */
+  font-weight: 700;
+  line-height: 1;
+  margin-top: 4rem;
+  margin-bottom: 3rem;
+  text-transform: uppercase;
+}
+/* make designers + timeline intros match ABOUT intro scale */
+.page-lede {
+  font-size: 1.25rem;
+  line-height: 1.6;
+  max-width: 65ch;
+}
+/* ---------------------------------------- */
+/* MOBILE FIXES FOR HERO TITLES & GRID */
+/* ---------------------------------------- */
+
+/* Prevent hero titles from causing overflow on small screens */
+@media (max-width: 768px) {
+  .page-hero-title {
+    font-size: clamp(2.2rem, 10vw, 3.5rem);
+    line-height: 1.1;
+    word-break: break-word;   /* forces long words like TIMELINE to wrap */
+  }
+
+  .page-grid {
+    grid-template-columns: 1fr;  /* no side gutters shrinking space */
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+
+  .page-grid > * {
+    grid-column: 1;  /* everything becomes 1-column cleanly */
   }
 }
