@@ -634,10 +634,9 @@ main {
   position: relative;
   display: block;
   margin-top: var(--space-4);
-  padding-left: 0;
 }
 
-.timeline-stack .timeline-card {
+.timeline-stack .timeline-item {
   grid-column: unset;
   display: grid;
   grid-template-columns: repeat(12, minmax(0, 1fr));
@@ -646,14 +645,14 @@ main {
   margin-top: var(--space-5);
   row-gap: var(--space-1);
   position: relative;
+  padding-left: 0;
 }
 
-.timeline-stack .timeline-card:first-child {
+.timeline-stack .timeline-item:first-child {
   margin-top: 0;
 }
 
-.timeline-stack::before {
-  content: '';
+.timeline-spine {
   position: absolute;
   left: calc((100% / 12) * 0.5);
   top: 0;
@@ -662,28 +661,27 @@ main {
   background: #d3d3d3;
 }
 
-.timeline-dot {
-  grid-column: 2 / span 1;
+.timeline-stack .timeline-dot {
+  position: absolute;
+  left: calc((100% / 12) * 0.5);
+  top: var(--space-2);
+  transform: translate(-50%, 0);
   width: 10px;
   height: 10px;
   border-radius: 50%;
   background: var(--color-accent);
-  justify-self: center;
-  align-self: start;
-  margin-left: -5px;
-  margin-top: var(--space-3);
 }
 
-.timeline-year {
+.timeline-stack .timeline-item .timeline-year {
   grid-column: 3 / span 2;
   font-size: clamp(18px, 2vw, 22px);
-  letter-spacing: 0.1em;
+  letter-spacing: 0;
   font-weight: 600;
-  text-transform: uppercase;
+  text-transform: none;
   margin-top: var(--space-2);
 }
 
-.timeline-caption {
+.timeline-stack .timeline-item .timeline-caption {
   grid-column: 5 / -1;
   font-size: clamp(16px, 1.6vw, 18px);
   line-height: 1.6;
@@ -769,11 +767,10 @@ main {
     margin-bottom: 0.25rem !important;
   }
 
-  .timeline-dot {
-    grid-column: 1;
-    justify-self: flex-start;
-    margin-left: 0;
-    margin-top: var(--space-1);
+  .timeline-stack .timeline-dot {
+    left: 0;
+    top: var(--space-1);
+    transform: translate(0, 0);
   }
 
   .timeline-stack {
@@ -781,25 +778,25 @@ main {
     margin-top: var(--space-3);
   }
 
-  .timeline-stack::before {
+  .timeline-spine {
     display: none;
   }
 
-  .timeline-stack .timeline-card {
+  .timeline-stack .timeline-item {
     grid-template-columns: repeat(4, minmax(0, 1fr));
     margin-top: var(--space-4);
     row-gap: var(--space-1);
+    padding-left: 0;
   }
 
-  .timeline-year,
-  .timeline-caption {
+  .timeline-stack .timeline-item .timeline-year,
+  .timeline-stack .timeline-item .timeline-caption {
     grid-column: 1 / -1;
     margin-top: var(--space-1);
   }
 
   .designer-item,
-  .designer-card,
-  .timeline-item {
+  .designer-card {
     margin-top: 0.5rem !important;
     margin-bottom: 0.5rem !important;
   }
