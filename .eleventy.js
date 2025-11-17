@@ -1,8 +1,11 @@
 const { DateTime } = require("luxon");
 
 module.exports = function(eleventyConfig) {
-  // Copy CSS to final _site/css
-  eleventyConfig.addPassthroughCopy({ "src/css": "css" });
+
+  // Copy CSS file directly into output
+  eleventyConfig.addPassthroughCopy({
+    "src/css/main.css": "css/main.css"
+  });
 
   // Date filter
   eleventyConfig.addFilter("date", function(dateObj, format = "yyyy") {
@@ -12,8 +15,8 @@ module.exports = function(eleventyConfig) {
   return {
     dir: {
       input: "src",
-      includes: "_includes",             // <-- FIXED
-      layouts: "_includes/_layouts"      // <-- FIXED
+      includes: "_includes",
+      layouts: "_includes/_layouts"
     },
     htmlTemplateEngine: "njk",
     markdownTemplateEngine: "njk",
