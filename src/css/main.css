@@ -908,51 +908,7 @@ main {
   transform: translateY(4px);
 }
 
-.page-grid {
-  display: grid;
-  grid-template-columns: 1fr minmax(48ch, 70ch) 1fr;
-  padding-top: var(--space-10);
-  padding-bottom: var(--space-10);
-}
-
-.page-grid > * {
-  grid-column: 2;
-}
-/* add generous neo-swiss spacing to the about page */
-.about.page-grid {
-  padding-top: var(--space-14); /* big, clean breathing room */
-}
-
-/* give the headline even more separation from the intro */
-.about-title {
-  margin-bottom: var(--space-10);
-}
-/* FORCE spacing for the about page */
-section.about.page-grid {
-  padding-top: 8rem !important;
-  padding-bottom: 6rem !important;
-}
-
-.about-title {
-  margin-top: 2rem !important;
-  margin-bottom: 3rem !important;
-}
-/* mobile-first spacing */
-@media (max-width: 768px) {
-  section.about.page-grid {
-    padding-top: 5rem !important;
-    padding-bottom: 4rem !important;
-  }
-
-  .about-title {
-    margin-top: 1rem !important;
-    margin-bottom: 2rem !important;
-  }
-}
-/* ----------------------------- */
-/* NEO-SWISS ABOUT PAGE SPACING  */
-/* ----------------------------- */
-
+/* ABOUT PAGE — desktop spacing */
 .about.page-grid {
   padding-top: 8rem;
   padding-bottom: 6rem;
@@ -963,7 +919,7 @@ section.about.page-grid {
   margin-bottom: 3rem;
 }
 
-/* mobile-first spacing adjustments */
+/* ABOUT PAGE — mobile spacing */
 @media (max-width: 768px) {
   .about.page-grid {
     padding-top: 5rem;
@@ -973,5 +929,143 @@ section.about.page-grid {
   .about-title {
     margin-top: 1rem;
     margin-bottom: 2rem;
+  }
+}
+/* ABOUT PAGE ONLY — neo-swiss grid */
+.about.page-grid {
+  display: grid;
+  grid-template-columns: 1fr minmax(48ch, 70ch) 1fr;
+  padding-top: 8rem;
+  padding-bottom: 6rem;
+}
+
+.about.page-grid > * {
+  grid-column: 2;
+}
+
+/* mobile version */
+@media (max-width: 768px) {
+  .about.page-grid {
+    grid-template-columns: 1fr;
+    padding-top: 5rem;
+    padding-bottom: 4rem;
+  }
+
+  .about.page-grid > * {
+    grid-column: 1;
+  }
+}
+/* -------------------------------------------------- */
+/* NEO-SWISS TYPE SCALE — GLOBAL TYPOGRAPHIC UPGRADE  */
+/* -------------------------------------------------- */
+
+/* Base body size — modern Swiss prefers slightly larger text */
+body {
+  font-size: 20px;
+  line-height: 1.45;
+}
+
+/* Section labels like "TIMELINE" */
+h2,
+.section-label {
+  font-size: 22px;
+  letter-spacing: 0.05em;
+}
+
+/* Major page titles ("WHAT IS NEO-SWISS?", "DESIGNERS", etc.) */
+h1 {
+  font-size: clamp(64px, 10vw, 88px);
+  line-height: 1.05;
+  font-weight: 700;
+}
+
+/* Timeline year */
+.timeline-year {
+  font-size: 30px;
+  font-weight: 600;
+}
+
+/* Timeline description text */
+.timeline-caption {
+  font-size: 20px;
+  line-height: 1.45;
+}
+
+/* Extra spacing between timeline items */
+.timeline-item {
+  margin-bottom: 4rem;
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+  body {
+    font-size: 18px;
+    line-height: 1.45;
+  }
+
+  h1 {
+    font-size: clamp(44px, 12vw, 72px);
+  }
+
+  .timeline-year {
+    font-size: 26px;
+  }
+
+  .timeline-item {
+    margin-bottom: 3rem;
+  }
+}
+/* -------------------------------------------------- */
+/* NEO-SWISS ABOUT PAGE: TYPOGRAPHY + SPACING TUNING  */
+/* -------------------------------------------------- */
+
+/* larger intro for proper Swiss hierarchy */
+.about-intro {
+  font-size: 22px;
+  line-height: 1.5;
+  max-width: 70ch;
+  margin-top: 2rem;      /* tighten spacing */
+  margin-bottom: 4rem;   /* clean rhythm */
+}
+
+/* adjust headline spacing for strong Swiss presence */
+.about-title {
+  margin-top: 3rem;
+  margin-bottom: 2.5rem;
+  line-height: 0.95; /* tighter, museum-style headline */
+}
+
+/* highlight the word NEO in brand accent color */
+.about-title .accent-neo {
+  color: #ff004f;  /* your dot color */
+}
+
+/* ensure consistent vertical rhythm for all subsequent sections */
+.about-section {
+  margin-top: 4rem;
+  margin-bottom: 3rem;
+}
+
+.about-section h2 {
+  margin-bottom: 1rem;
+  font-size: 32px;
+  line-height: 1.2;
+}
+
+/* mobile refinements */
+@media (max-width: 768px) {
+  .about-intro {
+    font-size: 20px;
+    margin-top: 1.5rem;
+    margin-bottom: 3rem;
+  }
+
+  .about-title {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+  }
+
+  .about-section {
+    margin-top: 3rem;
   }
 }
