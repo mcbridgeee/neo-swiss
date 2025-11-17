@@ -22,15 +22,17 @@ jobs:
           node-version: 18
 
       - name: Install dependencies
+        working-directory: is117/neo-swiss
         run: npm install
 
       - name: Build Eleventy
-        run: npx @11ty/eleventy
+        working-directory: is117/neo-swiss
+        run: npx @11ty/eleventy --output=_site
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: _site
+          path: is117/neo-swiss/_site
 
   deploy:
     runs-on: ubuntu-latest
