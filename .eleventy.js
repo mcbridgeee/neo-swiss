@@ -1,10 +1,10 @@
 const { DateTime } = require("luxon");
 
 module.exports = function(eleventyConfig) {
-  // Make Eleventy copy your CSS folder to _site
-  eleventyConfig.addPassthroughCopy("src/css");
+  // Copy CSS to final _site/css
+  eleventyConfig.addPassthroughCopy({ "src/css": "css" });
 
-  // Add date filter for Nunjucks
+  // Date filter
   eleventyConfig.addFilter("date", function(dateObj, format = "yyyy") {
     return DateTime.fromJSDate(new Date(dateObj)).toFormat(format);
   });
@@ -12,8 +12,8 @@ module.exports = function(eleventyConfig) {
   return {
     dir: {
       input: "src",
-      includes: "src/_includes",
-      layouts: "src/_includes/_layouts"
+      includes: "_includes",             // <-- FIXED
+      layouts: "_includes/_layouts"      // <-- FIXED
     },
     htmlTemplateEngine: "njk",
     markdownTemplateEngine: "njk",
