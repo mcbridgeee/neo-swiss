@@ -14,7 +14,8 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout repo
+        uses: actions/checkout@v4
 
       - name: Setup Node
         uses: actions/setup-node@v4
@@ -22,17 +23,17 @@ jobs:
           node-version: 18
 
       - name: Install dependencies
-        working-directory: is117/neo-swiss
         run: npm install
+        working-directory: .
 
       - name: Build Eleventy
-        working-directory: is117/neo-swiss
-        run: npx @11ty/eleventy --output=_site
+        run: npx @11ty/eleventy
+        working-directory: .
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: is117/neo-swiss/_site
+          path: _site
 
   deploy:
     runs-on: ubuntu-latest
