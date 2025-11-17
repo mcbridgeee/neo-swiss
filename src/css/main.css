@@ -878,3 +878,100 @@ main {
     grid-template-columns: repeat(2, 1fr);
   }
 }
+@media (max-width: 768px) {
+
+  .timeline-stack {
+    grid-template-columns: 24px 1fr;
+    padding-left: 12px;
+  }
+
+  .timeline-spine {
+    left: 12px;
+  }
+
+  .timeline-dot {
+    left: 12px;
+  }
+
+  .timeline-year {
+    margin-left: 16px;
+    padding-left: 12px;
+    transform: translateY(-2px); /* lifts the date slightly for clean baseline alignment */
+}
+  } /* NEW: fix spacing between dot and year */
+  .timeline-item {
+    grid-template-columns: 32px 1fr;
+    column-gap: 12px;
+  }
+  
+  .timeline-dot {
+  transform: translateY(4px);
+}
+
+.page-grid {
+  display: grid;
+  grid-template-columns: 1fr minmax(48ch, 70ch) 1fr;
+  padding-top: var(--space-10);
+  padding-bottom: var(--space-10);
+}
+
+.page-grid > * {
+  grid-column: 2;
+}
+/* add generous neo-swiss spacing to the about page */
+.about.page-grid {
+  padding-top: var(--space-14); /* big, clean breathing room */
+}
+
+/* give the headline even more separation from the intro */
+.about-title {
+  margin-bottom: var(--space-10);
+}
+/* FORCE spacing for the about page */
+section.about.page-grid {
+  padding-top: 8rem !important;
+  padding-bottom: 6rem !important;
+}
+
+.about-title {
+  margin-top: 2rem !important;
+  margin-bottom: 3rem !important;
+}
+/* mobile-first spacing */
+@media (max-width: 768px) {
+  section.about.page-grid {
+    padding-top: 5rem !important;
+    padding-bottom: 4rem !important;
+  }
+
+  .about-title {
+    margin-top: 1rem !important;
+    margin-bottom: 2rem !important;
+  }
+}
+/* ----------------------------- */
+/* NEO-SWISS ABOUT PAGE SPACING  */
+/* ----------------------------- */
+
+.about.page-grid {
+  padding-top: 8rem;
+  padding-bottom: 6rem;
+}
+
+.about-title {
+  margin-top: 2rem;
+  margin-bottom: 3rem;
+}
+
+/* mobile-first spacing adjustments */
+@media (max-width: 768px) {
+  .about.page-grid {
+    padding-top: 5rem;
+    padding-bottom: 4rem;
+  }
+
+  .about-title {
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+  }
+}
