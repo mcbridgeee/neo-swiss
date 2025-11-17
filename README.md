@@ -3,7 +3,7 @@
 a study on neo-swiss web design
 
 **live site:**  
-https://mcbridgeeee.github.io/neo-swiss/
+[https://mcbridgeeee.github.io/neo-swiss/](https://mcbridgeee.github.io/neo-swiss/)
 
 ---
 
