@@ -788,3 +788,37 @@ main {
     padding-bottom: 0 !important;
   }
 }
+
+@media (min-width: 769px) {
+  .site-header nav,
+  .site-nav {
+    grid-column: 9 / span 4;
+    justify-self: end;
+  }
+}
+/* Desktop header alignment (12-col grid) */
+@media (min-width: 769px) {
+
+  /* Make the header use the full site grid */
+  .site-header-grid {
+    grid-template-columns: repeat(12, 1fr);
+  }
+
+  /* Brand on the left */
+  .site-brand {
+    grid-column: 1 / span 4;
+  }
+
+  /* Nav on the right */
+  .site-nav-desktop {
+    grid-column: 9 / span 4;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+  }
+
+  /* Optional: tighten right edge spacing */
+  .site-nav {
+    padding-right: 1rem;
+  }
+}
