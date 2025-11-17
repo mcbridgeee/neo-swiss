@@ -1,12 +1,13 @@
 :root {
-  /* spacing scale */
-  --space-8: 0.5rem;
-  --space-16: 1rem;
-  --space-24: 1.5rem;
-  --space-32: 2rem;
-  --space-48: 3rem;
-  --space-64: 4rem;
-  --space-80: 5rem;
+  /* 8px baseline spacing variables (neo-swiss grid) */
+  --unit: 8px;
+  --space-8: calc(var(--unit) * 1);   /* 8px */
+  --space-16: calc(var(--unit) * 2);  /* 16px */
+  --space-24: calc(var(--unit) * 3);  /* 24px */
+  --space-32: calc(var(--unit) * 4);  /* 32px */
+  --space-48: calc(var(--unit) * 6);  /* 48px */
+  --space-64: calc(var(--unit) * 8);  /* 64px */
+  --space-80: calc(var(--unit) * 10); /* 80px */
   --space-1: var(--space-8);
   --space-2: var(--space-16);
   --space-3: var(--space-24);
@@ -59,8 +60,9 @@ body {
 }
 
 body {
-  padding-left: clamp(1.5rem, 7vw, 11rem);
-  padding-right: clamp(1rem, 4vw, 4.5rem);
+  /* Responsive padding with 8px-grid endpoints */
+  padding-left: clamp(var(--space-2), 7vw, var(--space-64));
+  padding-right: clamp(var(--space-1), 4vw, var(--space-32));
 }
 
 img,
@@ -148,14 +150,14 @@ main {
 .container {
   width: 100%;
   margin: 0;
-  padding-left: clamp(1.25rem, 7vw, 12rem);
-  padding-right: clamp(1rem, 4vw, 4rem);
+  padding-left: clamp(var(--space-2), 7vw, var(--space-80));
+  padding-right: clamp(var(--space-1), 4vw, var(--space-32));
 }
 
 .grid {
   display: grid;
   grid-template-columns: repeat(12, minmax(0, 1fr));
-  gap: clamp(1.25rem, 2.5vw, 3rem);
+  gap: clamp(var(--space-2), 2.5vw, var(--space-4));
 }
 
 .col-3 {
@@ -319,7 +321,7 @@ main {
 
 .hero-grid {
   row-gap: var(--space-3);
-  column-gap: clamp(2rem, 6vw, 6rem);
+  column-gap: clamp(var(--space-4), 6vw, var(--space-12, calc(var(--unit) * 24)));
   align-items: flex-end;
 }
 
@@ -425,10 +427,12 @@ main {
 }
 
 .section-teaser {
-  grid-column: span 4;
+  grid-column: 1 / -1;
   text-transform: lowercase;
   color: var(--color-black);
-  max-width: 30ch;
+  max-width: 60ch;
+  width: 100%;
+  margin-bottom: var(--space-3);
 }
 
 .section-link-wrap {
@@ -461,62 +465,34 @@ main {
   }
 }
 
-/* timeline */
-.timeline-grid {
-  row-gap: var(--space-4);
-  margin-top: var(--space-4);
-}
-
-.timeline-card {
-  grid-column: span 4;
-  border-top: 1px solid var(--color-black);
-  padding-top: var(--space-3);
+/* timeline & designers sections share flex layout */
+.designers-layout,
+.timeline-layout {
   display: flex;
-  flex-direction: column;
-  gap: var(--space-1);
-}
-
-.timeline-card::before {
-  content: '';
-  width: 0.6rem;
-  height: 0.6rem;
-  border-radius: 50%;
-  background: var(--color-accent);
-  margin-bottom: var(--space-1);
-}
-
-.timeline-year {
-  font-size: var(--font-size-xs);
-  letter-spacing: 0.25em;
-  text-transform: uppercase;
-  color: var(--color-black);
-}
-
-.timeline-caption {
-  max-width: 32ch;
-}
-
-@media (max-width: 1023px) {
-  .timeline-card {
-    grid-column: span 6;
-  }
-}
-
-@media (max-width: 640px) {
-  .timeline-card {
-    grid-column: span 4;
-  }
-}
-
-/* designers */
-.designers-grid {
-  row-gap: var(--space-4);
+  gap: clamp(2rem, 4vw, 5rem);
+  align-items: flex-start;
   margin-top: var(--space-4);
-  align-items: start;
+  width: 100%;
 }
 
-.designer-card {
-  grid-column: span 4;
+.designers-intro,
+.timeline-intro {
+  flex: 0 0 clamp(18rem, 26vw, 24rem);
+}
+
+.designer-row,
+.timeline-row {
+  flex: 1;
+  width: 100%;
+  display: flex;
+  flex-wrap: nowrap;
+  gap: clamp(1.5rem, 3vw, 4rem);
+  justify-content: space-between;
+}
+
+.designer-card,
+.timeline-card {
+  flex: 1 1 0;
   border-top: 1px solid var(--color-black);
   padding-top: var(--space-3);
   display: flex;
@@ -537,20 +513,82 @@ main {
   text-transform: lowercase;
 }
 
-.designer-desc {
+.designer-desc,
+.timeline-caption {
   max-width: 28ch;
 }
 
+.designers-link-wrap,
+.timeline-link-wrap {
+  margin-top: var(--space-3);
+  display: flex;
+  justify-content: flex-end;
+}
+
 @media (max-width: 1023px) {
-  .designer-card {
-    grid-column: span 6;
+  .designers-layout,
+  .timeline-layout {
+    flex-direction: column;
+  }
+
+  .designer-row,
+  .timeline-row {
+    flex-direction: column;
+  }
+
+  .designers-link-wrap,
+  .timeline-link-wrap {
+    justify-content: flex-start;
+  }
+
+  .designers-section .grid {
+    display: block;
+  }
+
+  .designers-section .section-eyebrow,
+  .designers-section .section-teaser,
+  .designers-section .designers-grid {
+    grid-column: 1 / -1;
   }
 }
 
 @media (max-width: 640px) {
-  .designer-card {
-    grid-column: span 4;
+  .designers-section .designer-row,
+  .timeline-row {
+    flex-direction: column;
   }
+
+  .timeline-row .timeline-card {
+    order: 999;
+  }
+
+  .timeline-row .timeline-card:nth-child(3) {
+    order: 1;
+  }
+
+  .timeline-row .timeline-card:nth-child(2) {
+    order: 2;
+  }
+
+  .timeline-row .timeline-card:nth-child(1) {
+    order: 3;
+  }
+}
+
+.timeline-card::before {
+  content: '';
+  width: 0.6rem;
+  height: 0.6rem;
+  border-radius: 50%;
+  background: var(--color-accent);
+  margin-bottom: var(--space-1);
+}
+
+.timeline-year {
+  font-size: var(--font-size-xs);
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--color-black);
 }
 
 /* standalone page sections */
@@ -590,6 +628,50 @@ main {
 
 .timeline-stack .timeline-card {
   grid-column: unset;
+}
+
+/* On larger screens, render the timeline as a single horizontal row (mobile-first) */
+@media (min-width: 1024px) {
+  /* Desktop: show three timeline cards side-by-side, centered */
+  .timeline-stack {
+    flex-direction: row;
+    gap: var(--space-4);
+    align-items: flex-start;
+    justify-content: center;
+    padding-bottom: var(--space-2);
+    /* prevent wrapping so order stays left-to-right chronological */
+    flex-wrap: nowrap;
+  }
+
+  /* Each card takes one third of the available content area (minus gaps)
+     Use min-width:0 so flex-basis can shrink correctly inside constrained containers */
+  .timeline-stack .timeline-card {
+    grid-column: unset;
+    flex: 0 0 calc((100% - (2 * var(--space-4))) / 3);
+    min-width: 0;
+    border-top: none;
+    border-left: none;
+    padding: var(--space-3) var(--space-2);
+    margin: 0;
+    box-sizing: border-box;
+  }
+
+  .timeline-stack .timeline-card::before {
+    margin-bottom: 0.6rem;
+  }
+
+  /* Slight visual separator between cards using a right border on all but the last */
+  .timeline-stack .timeline-card + .timeline-card {
+    border-left: 1px solid var(--color-gray-400);
+    padding-left: calc(var(--space-3) - 0.5rem);
+  }
+
+  /* Ensure the first three are visible and centered; if there are more, they will overflow horizontally
+     (this keeps chronological left-to-right order). */
+  .timeline-stack {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
 }
 
 @media (max-width: 1023px) {
