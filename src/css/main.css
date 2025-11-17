@@ -1069,3 +1069,51 @@ h1 {
     margin-top: 3rem;
   }
 }
+
+/* --------------------------------------- */
+/* GLOBAL PAGE HERO / INTRO SPACING       */
+/* --------------------------------------- */
+
+.page-hero-title {
+  font-size: clamp(3rem, 8vw, 6rem);
+  font-weight: 700;
+  line-height: 1;
+  margin-top: 4rem;
+  margin-bottom: 3rem;
+  text-transform: lowercase;
+}
+
+.page-hero-title .accent-neo {
+  color: var(--accent-color);
+}
+
+.page-hero-intro {
+  font-size: clamp(1.125rem, 2.6vw, 1.45rem);
+  line-height: 1.55;
+  max-width: 70ch;
+  margin-bottom: 5rem;
+}
+
+.page-grid {
+  display: grid;
+  grid-template-columns: 1fr minmax(48ch, 70ch) 1fr;
+  padding-top: 6rem;
+  padding-bottom: 6rem;
+}
+
+.page-grid > * {
+  grid-column: 2;
+}
+
+/* mobile */
+@media (max-width: 768px) {
+  .page-hero-title {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+  }
+
+  .page-grid {
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+  }
+}
