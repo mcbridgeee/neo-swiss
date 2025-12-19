@@ -4,6 +4,9 @@ module.exports = function(eleventyConfig) {
   // Copy the entire css folder to /css in the output
   eleventyConfig.addPassthroughCopy({ "src/css": "css" });
 
+  // Copy favicon
+  eleventyConfig.addPassthroughCopy({ "src/favicon.svg": "favicon.svg" });
+
   // Date filter
   eleventyConfig.addFilter("date", function (dateObj, format = "yyyy") {
     return DateTime.fromJSDate(new Date(dateObj)).toFormat(format);
